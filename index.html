@@ -12,7 +12,11 @@
     <script>
         // Get the URL search parameters
         var urlParams = new URLSearchParams(window.location.search);
+            console.log("urlParams: in github"); console.log(urlParams);
+
+
         var personName = urlParams.get('person');
+        console.log("personName: in github"); console.log(personName);
 
         // If the 'person' parameter is present, send it to the parent window
         if (personName) {
@@ -20,6 +24,6 @@
         }
     </script>
 
-    
+
 </body>
 </html>
