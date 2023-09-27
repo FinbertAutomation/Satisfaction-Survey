@@ -8,20 +8,19 @@
 </head>
 <body>
     <iframe src="https://script.google.com/macros/s/AKfycbwFbOqR0mspgA142eLVg8P4k1T0iVS0_ML4t6F0AnX7e_77-V8nLFbkn9l8et4ZJyV-OQ/exec" frameborder="0" width="100%" height="800px"></iframe>
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var personName = urlParams.get('person');
+    var midId = urlParams.get('mid');
 
-    <script>
-        // Get the URL search parameters
-        var urlParams = new URLSearchParams(window.location.search);
-        console.log("urlParams: in github"); console.log(urlParams);
+    console.log(personName);
+    console.log(midId);
 
-        var personName = urlParams.get('person');
-        console.log("personName: in github"); console.log(personName);
 
-        // If the 'person' parameter is present, send it to the parent window
-        if (personName) {
-            window.parent.parent.postMessage({ person: personName }, '*');
-        }
-    </script>
+    if (personName) {
+        window.postMessage({ person: personName }, '*');
+    }
+</script>
 
 
 </body>
