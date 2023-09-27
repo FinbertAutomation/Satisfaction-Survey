@@ -200,30 +200,7 @@
 
             var globalPerson;
             var globalMid;
-            //------------------------------------insertPersonName----------------------------------------------
-
-            function insertPersonName() {
-                // Get the URL of the parent window
-                var urlParams = new URLSearchParams(window.location.search);
-                var personName = urlParams.get('person');
-                var midId = urlParams.get('mid');
-
-                console.log("personName:" + personName);
-                console.log("midId: " + midId);
-
-                globalPerson = urlParams.get('person');
-                globalMid = urlParams.get('mid');
-
-                // If the 'person' parameter is present, inject it into the HTML
-                if (personName) {
-                    var personElement = document.getElementById('person-id');
-                    if (personElement) {
-                        let personWithGreeting = `${personName}, שלום רב, `;
-                        personElement.textContent = personWithGreeting;
-                    }
-                }
-
-            };//insertPersonName   
+ 
 
             //-----------------------------------------------------------------
             function sendDataToServer() {
@@ -346,7 +323,30 @@
                     sendDataToServer();
                 };//if
             }
+            //------------------------------------insertPersonName----------------------------------------------
 
+            function insertPersonName() {
+                // Get the URL of the parent window
+                var urlParams = new URLSearchParams(window.location.search);
+                var personName = urlParams.get('person');
+                var midId = urlParams.get('mid');
+
+                console.log("personName:" + personName);
+                console.log("midId: " + midId);
+
+                globalPerson = urlParams.get('person');
+                globalMid = urlParams.get('mid');
+
+                // If the 'person' parameter is present, inject it into the HTML
+                if (personName) {
+                    var personElement = document.getElementById('person-id');
+                    if (personElement) {
+                        let personWithGreeting = `${personName}, שלום רב, `;
+                        personElement.textContent = personWithGreeting;
+                    }
+                }
+
+            };//insertPersonName  
             //-------------------------------------------------------------------
 
             function showCustomAlert(message, type) {
