@@ -219,9 +219,13 @@
                 selectedAnswers['question4_comments'] = comments;
                 console.log('Selected Answers - line 219:', selectedAnswers);
 
-                //parameters from URL and add to selectedAnswers
-                selectedAnswers.person = globalPerson;
-                selectedAnswers.mid = globalMid;
+                //Add parameters from URL and add to selectedAnswers       
+                
+                var urlParams = new URLSearchParams(window.location.search);
+                var personName = urlParams.get('person');
+                var midId = urlParams.get('mid');
+                selectedAnswers.person = personName;
+                selectedAnswers.mid = midId;
                 console.log('Selected Answers - line 224:', selectedAnswers);
 
                 //fetch with post
