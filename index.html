@@ -217,7 +217,7 @@
                 // Get text from textarea
                 const comments = document.getElementById('comments').value;
                 selectedAnswers['question4_comments'] = comments;
-                console.log('Selected Answers - line 219:', selectedAnswers);
+                console.log('Selected Answers - line 220:', selectedAnswers);
 
                 //Add parameters from URL and add to selectedAnswers       
                 
@@ -226,9 +226,23 @@
                 var midId = urlParams.get('mid');
                 selectedAnswers.person = personName;
                 selectedAnswers.mid = midId;
-                console.log('Selected Answers - line 224:', selectedAnswers);
+                console.log('Selected Answers - line 229:', selectedAnswers);
 
                 //fetch with post
+                fetch('https://script.google.com/macros/s/AKfycbwFbOqR0mspgA142eLVg8P4k1T0iVS0_ML4t6F0AnX7e_77-V8nLFbkn9l8et4ZJyV-OQ/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain; charset=utf-8',
+                    },
+                    body: JSON.stringify(selectedAnswers),
+                    })
+                    .then((response) => response.text())
+                    .then((data) => {
+                        console.log('Server response:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error sending data to server:', error);
+                    });
 
                 //show thankYouDiv
                 var thankYouDiv = document.getElementById('thankYouDiv');
@@ -240,53 +254,7 @@
                 }
 
                 // Set the cookie with SameSite=None and Secure attributes      
-                document.cookie = "myCookie=survey; Secure";
-
-                /*
-                // Capture parameters from URL and add to selectedAnswers
-                google.script.url.getLocation(function(location) {
-                  console.log("location.parameters"); console.log(location.parameters);
-                  console.log("location.parameter"); console.log(location.parameter);
-          
-          
-                  if (location.parameters.mid) {
-                    console.log("location.parameter.mid: " + location.parameter.mid);
-                    selectedAnswers.mid = location.parameter.mid;
-                  }
-          
-                  if (location.parameters.person) {
-                    console.log("location.parameter.person: " + location.parameter.person);
-                    selectedAnswers.person = location.parameter.person;
-                  }
-          
-                  // Log the updated selectedAnswers object
-                    console.log('Selected Answers with URL parameters:', selectedAnswers);
-          
-                  // Send data to the server using google.script.run
-                  
-                  google.script.run
-                    .withSuccessHandler(function(response) {
-                      console.log('Server response:', response);
-                    })
-                    .withFailureHandler(function(error) {
-                      console.error('Error sending data to server:', error);
-                    })
-                    .handleIncomingObject(selectedAnswers);//end: script.run
-                  
-          
-                  var thankYouDiv = document.getElementById('thankYouDiv');
-                  var questionnaireDiv = document.getElementById('questionnaireDiv'); // Give your questionnaire div an ID
-          
-                  if (thankYouDiv && questionnaireDiv) {
-                        thankYouDiv.classList.remove('d-none');
-                        questionnaireDiv.classList.add('d-none');
-                  }
-          
-                  // Set the cookie with SameSite=None and Secure attributes      
-                  document.cookie = "myCookie=survey; Secure";
-          
-                });//end: getLocation
-                */
+                document.cookie = "myCookie=survey; Secure";       
 
             }; //sendDataToServer
             //----------------------------------------------------------------------------------
