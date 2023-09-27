@@ -224,8 +224,10 @@
                 var urlParams = new URLSearchParams(window.location.search);
                 var personName = urlParams.get('person');
                 var midId = urlParams.get('mid');
-                selectedAnswers.person = personName;
-                selectedAnswers.mid = midId;
+
+                selectedAnswers[person] = personName;
+                selectedAnswers[mid] = midId;
+                
                 console.log('Selected Answers - line 224:', selectedAnswers);
 
                 //fetch with post
